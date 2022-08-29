@@ -7,4 +7,4 @@ class HumanPlayer(Player):
 
     def choose_gesture(self):
         self.choice = self.choice[int(input("CHOOSE 1-5")) - 1]
-        print(self.choice)
+        print(self.choice) #

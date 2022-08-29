@@ -1,6 +1,6 @@
 from players import Player
 import random
-
+#
 class AiPlayer(Player):
     def __init__(self):
         self.name = "Player 2"
