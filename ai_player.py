@@ -8,4 +8,4 @@ class AiPlayer(Player):
 
     def choose_gesture(self):
         self.choice = random.choice(self.choice)
-        print(self.choice)
+        return self.choice
