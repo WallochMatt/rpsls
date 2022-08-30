@@ -7,5 +7,5 @@ class AiPlayer(Player):
         super().__init__()
 
     def choose_gesture(self):
-        self.choice = random.choice(self.choice)
-        return self.choice
+        self.chosen_option = random.choice(self.choice)
+        return self.chosen_option
