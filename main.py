@@ -1,6 +1,4 @@
+from game import Game
 
-from human_player import HumanPlayer, Player
-
-x = HumanPlayer(Player)
-
-x.choose_gesture() #
+x= Game()
+x.run_game()

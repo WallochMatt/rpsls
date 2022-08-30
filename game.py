@@ -8,10 +8,11 @@ class Game:
         self.bot = AiPlayer()
 
     def run_game(self):
-        self.display_welcome()
-        self.display_rules()
-        #choose ai or human
-        self.play_game()
+        # self.display_welcome()
+        # self.display_rules()
+        # number_of_rounds = self.choose_rounds()
+        self.play_game_ai()
+        # self.game_options()
         self.display_winner()
         
     def display_welcome(self):
@@ -24,8 +25,8 @@ class Game:
         3: 7 rounds
         4: 9 rounds
         ''')
-        int(input("Select the amount of rounds you'd like: ") - 1) # add inpu subtraction like choosing gesture
-
+        return options[int(input("Select the amount of rounds you'd like: "))-1] # add input subtraction like choosing gesture
+    
     def choose_opponent(self):
         x = int(input('''Ai vs Multiplayer
         1: Ai
@@ -34,9 +35,7 @@ class Game:
         if x == 1:
             pass #play ai game method
         if x == 2:
-            pass #mp method
-        
-
+            pass #mp method      
 
     def display_rules(self):
         print(f'''Remember the rules: 
@@ -53,8 +52,8 @@ Rock crushes Scissors
 
 Ready to play?''')
 
-
     def play_game_ai(self): #might need add paranthesis 
+        number_of_rounds = self.choose_rounds()
         current_round = 1
         while current_round < number_of_rounds:
 
