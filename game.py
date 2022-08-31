@@ -7,29 +7,36 @@ class Game:
         self.user_2 = HumanPlayer("Player 2")
         self.bot = AiPlayer()
 
-#In def play_game_human(self), fix self.user_X names
 #Max function? Determine winner.
 
     def run_game(self):
-        # self.display_welcome()
-        # self.display_rules()
+        print(self.user_1.name)
+        self.display_welcome()
+        self.display_rules()
         self.choose_opponent()
-        # self.game_options()
+        
         # self.display_winner()
         
     def display_welcome(self):
         print('Wanna play Rock, Paper, Scissors, Lizard, and Spock?')
 
     def choose_rounds(self):
-        options = [3, 5, 7, 9]
-        print('''
+        options = [3, 5, 7, 9] #Refactor:put into an if statement and use recursion
+       
+        selected_option = options[(int(input('''Choose the amount of rounds: 
         1: 3 rounds
         2: 5 round
         3: 7 rounds
         4: 9 rounds
-        ''')
-        return options[(int(input("Select the amount of rounds you'd like: ")))-1] # add input subtraction like choosing gesture
+        
+        '''))) - 1]
     
+        if options == 0 or 1 or 2 or 3: #
+            return selected_option
+        else:
+            self.choose_rounds()
+
+
     def choose_opponent(self):
         x = int(input('''Choose your opponent: AI (Computer) or Multiplayer (another Human)
         1: Ai
@@ -40,7 +47,7 @@ class Game:
         if x == 2:
             self.play_game_human()
         else:
-            self.choose_opponent()
+            self.choose_opponent()#works with integers but not letters
 
     def display_rules(self):
         print(f'''Remember the rules: 
@@ -57,76 +64,85 @@ Rock crushes Scissors
 
 Ready to play?''')
 
+    def round_for_user(self):
+        self.user_1.points_earned += 1
+        print(f"{self.user_1.name} won the round and has {self.user_1.points_earned} points total.")
 
-    def play_game_ai(self): #might need add parenthesis 
+    def play_game_ai(self):
         number_of_rounds = self.choose_rounds()
-        current_round = 1
+        current_round = 0
         while current_round < number_of_rounds:
-            self.user_1.chosen_option = self.user_1.choose_gesture()
-            self.bot.choice = self.bot.choose_gesture()        #     
-            if self.user_1.chosen_option == self.user_1.choice[2] and (self.bot.choice == self.bot.choice[4] or self.bot.choice[0]): 
-                self.user_1.points_earned += 1
+            current_round += 1
+            print(f"Round {current_round}:")
+            player_one_choice = self.user_1.choose_gesture()
+            bot_choice = self.bot.choose_gesture()
 
-            elif self.user_1.chosen_option == self.user_1.choice[4] and (self.bot.choice == self.bot.choice[3] or self.bot.choice[0]): 
-                self.user_1.points_earned += 1 
+            if player_one_choice== "Lizard" and (bot_choice== "Spock" or bot_choice == "Paper"):
+                self.round_for_user()
 
-            elif self.user_1.chosen_option == self.user_1.choice[3] and (self.bot.choice == self.bot.choice[2] or self.bot.choice[1]):  
-                self.user_1.points_earned += 1 
+            elif player_one_choice== "Rock" and (bot_choice== "Scissors" or bot_choice== "Lizard"): 
+                self.round_for_user()
+
+            elif player_one_choice== "Scissors" and (bot_choice== "Paper" or bot_choice== "Lizard"):  
+                self.round_for_user()
         
-            elif self.user_1.chosen_option == self.user_1.choice[0] and (self.bot.choice == self.bot.choice[1] or self.bot.choice[3]):  
-                self.user_1.points_earned += 1 
+            elif player_one_choice== "Spock" and (bot_choice== "Scissors" or bot_choice== "Rock"):  
+                self.round_for_user()
 
-            elif self.user_1.chosen_option == self.user_1.choice[1] and (self.bot.choice == self.bot.choice[4] or self.bot.choice[2]): 
-                self.user_1.points_earned += 1
-        
-            elif self.user_1.chosen_option == self.bot.choice:
-                pass
+            elif player_one_choice== "Paper" and (bot_choice== "Rock" or bot_choice== "Spock"): 
+                self.round_for_user()
+
+            elif player_one_choice== bot_choice:
+                current_round -= 1
+
             else:
                 self.bot.points_earned += 1
-        self.display_winner()                
+                print(f"The AI won the round and has {self.bot.points_earned} points total.")
+
+            self.display_winner(number_of_rounds)                
                 
                         
     def play_game_human(self):
         number_of_rounds = self.choose_rounds()
         current_round = 0
         while current_round <= number_of_rounds:
-            print("Player1")#self.user_1.name
+
             player_one_choice = self.user_1.choose_gesture()
-            player_two_choice = self.user_2.choose_gesture()
- #utilize p1 choice as temporary variable           
+            player_two_choice = self.user_2.choose_gesture()          
             
-            self.user_1.chosen_option = self.user_1.choose_gesture()
-            print("player2")#self.user_2.name
-            self.user_2.chosen_option = self.user_2.choose_gesture()
             current_round += 1
-            # Player 1 has Lizard and Player 2 has either Scissors or Rock, Player 2 wins
-            if player_one_choice == "Lizard" and (player_two_choice == "Rock" or player_two_choice == "Scissors"):
-                self.user_2.points_earned += 1
-            if self.user_1.chosen_option == self.user_1.choice[2]  and (self.user_2.choice == self.user_2.choice[4] or self.user_2.choice[0]): 
-                self.user_2.points_earned += 1
-#REFACTOR with dictionaries?
-            elif self.user_1.chosen_option == self.user_1.choice[4]  and (self.user_2.choice == self.user_2.choice[3] or self.user_2.choice[0]): 
-                self.user_2.points_earned += 1 
+          
 
-            elif self.user_1.chosen_option == self.user_1.choice[3]  and (self.user_2.choice == self.user_2.choice[2] or self.user_2.choice[1]):  
-                self.user_1.points_earned += 1 
-        
-            elif self.user_1.chosen_option == self.user_1.choice[0] and (self.user_2.choice == self.user_2.choice[1] or self.user_2.choice[3]):
-                self.user_1.points_earned += 1 
+            if player_one_choice== "Lizard" and (player_two_choice== "Spock" or player_two_choice == "Paper"):
+                self.round_for_user()
 
-            elif self.user_1.chosen_option == self.user_1.choice[1]  and (self.user_2.choice == self.user_2.choice[4] or self.user_2.choice[2]): 
-                self.user_1.points_earned += 1
+            elif player_one_choice== "Rock" and (player_two_choice== "Scissors" or player_two_choice== "Lizard"): 
+               self.round_for_user()
+
+            elif player_one_choice== "Scissors" and (player_two_choice== "Paper" or player_two_choice== "Lizard"):  
+               self.round_for_user()
         
-            elif self.user_1.chosen_option == self.user_2.choice:
-                pass
+            elif player_one_choice== "Spock" and (player_two_choice== "Scissors" or player_two_choice== "Rock"):  
+               self.round_for_user()
+
+            elif player_one_choice== "Paper" and (player_two_choice== "Rock" or player_two_choice== "Spock"): 
+                self.round_for_user()
+        
+            elif player_one_choice== player_two_choice:
+                current_round -= 1
+
             else:
-                self.user_2.points_earned += 1
+                self.bot.points_earned += 1
+                print(f"{self.user_2.name} won the round and has {self.user_2.points_earned} points total.")
+
                 
         
-        self.display_winner()
+            self.display_winner(number_of_rounds) 
 
 
-    def display_winner(self):
+
+
+    def display_winner(self, number_of_rounds):
         if self.user_1.points_earned >= (number_of_rounds / 2):
             print(f"{self.user_1} wins!")
         elif self.user_2.points_earned >= (number_of_rounds / 2):
