@@ -15,4 +15,4 @@ class Player:
         self.points_earned = 0
     
     def choose_gesture(self):
-        pass#
+        pass

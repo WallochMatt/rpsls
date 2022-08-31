@@ -4,21 +4,14 @@ from human_player import HumanPlayer
 
 class Game:
     def __init__(self):
-        # self.player_one = HumanPlayer
-        # self.player_two = HumanPlayer OR AiPlayer
-        # self.player_two = self.choose_mode()
-        # should only be one "play_game" method
         self.user_1 = HumanPlayer("Player 1")
         self.user_2 = self.choose_opponent() 
-        
 
-#Max function? Determine winner.
 
     def run_game(self):
         self.display_welcome()
         self.display_rules()
         self.play_game()
-
 
 
     def display_welcome(self):
@@ -34,11 +27,10 @@ class Game:
         4: 9 rounds
         '''))) - 1]
     
-        if options == 0 or 1 or 2 or 3: #
+        if options == 0 or 1 or 2 or 3:
             return selected_option
         else:
             self.choose_rounds()
-
 
     def choose_opponent(self):
         who_you_chose = int(input('''Choose your opponent: AI (Computer) or Multiplayer (another Human)
@@ -118,9 +110,6 @@ Round {current_round}:
         print(f"{self.user_2.name} won {self.user_2.points_earned} rounds")
   
 
-        
-
-
     def display_winner(self, number_of_rounds, current_round):
         thatvar = False
         if self.user_1.points_earned >= (number_of_rounds / 2):
@@ -140,73 +129,3 @@ Round {current_round}:
             current_round = current_round
             return current_round
         
-
-
-    # def display_winner(self): #alternate approach to calculate winner
-    # while points_earned < (number rounds /2):
-    #     winning_points = number_of_rounds/2
-    #     if self.user_1.points_earned or self.user_2.points_earned or self.bot.points_earned >= (winning_points) >#end of game 
-    #         #MAX function built in
-    #         winners_points =  [self.user_1.points_earned, self.user_2.points_earned, self.bot.points_earned]
-    #         which is greater than 
-    #         #     print(f"{self.user_2} wins!")
-    #         # elif :
-    #             print(f"{the_winner} wins!")
-            
-    #         return the_winner[(int(winners_points("the winner is: based on the index ")))-1]
-        
-    # def gameplay_loop_pvp(self):
-    #     player_one_choice = self.user_1.choose_gesture()
-    #     print(f"{self.user_2.name} choose gesture:")
-    #     player_two_choice = self.user_2.choose_gesture()
-    #     if player_one_choice== "Lizard" and (player_two_choice== "Spock" or player_two_choice == "Paper"):
-    #         self.round_for_user()
-
-    #     elif player_one_choice== "Rock" and (player_two_choice== "Scissors" or player_two_choice== "Lizard"): 
-    #         self.round_for_user()
-
-    #     elif player_one_choice== "Scissors" and (player_two_choice== "Paper" or player_two_choice== "Lizard"):  
-    #         self.round_for_user()
-            
-    #     elif player_one_choice== "Spock" and (player_two_choice== "Scissors" or player_two_choice== "Rock"):  
-    #         self.round_for_user()
-
-    #     elif player_one_choice== "Paper" and (player_two_choice== "Rock" or player_two_choice== "Spock"): 
-    #         self.round_for_user()
-            
-    #     elif player_one_choice== player_two_choice:
-    #         current_round -= 1
-    #         print("Tie. Replaying the round")
-
-    #     else:
-    #         self.bot.points_earned += 1
-    #         print(f"{self.user_2.name} won the round and has {self.user_2.points_earned} points total.")
-
-
-    # def gameplay_loop_ai(self):
-    #     player_one_choice = self.user_1.choose_gesture()
-    #     bot_choice = self.bot.choose_gesture()
-    #     print(f"{self.bot.name} choose gesture:")
-
-    #     if player_one_choice== "Lizard" and (bot_choice== "Spock" or bot_choice == "Paper"):
-    #         self.round_for_user()
-
-    #     elif player_one_choice== "Rock" and (bot_choice== "Scissors" or bot_choice== "Lizard"): 
-    #         self.round_for_user()
-
-    #     elif player_one_choice== "Scissors" and (bot_choice== "Paper" or bot_choice== "Lizard"):  
-    #         self.round_for_user()
-        
-    #     elif player_one_choice== "Spock" and (bot_choice== "Scissors" or bot_choice== "Rock"):  
-    #         self.round_for_user()
-
-    #     elif player_one_choice== "Paper" and (bot_choice== "Rock" or bot_choice== "Spock"): 
-    #         self.round_for_user()
-
-    #     elif player_one_choice== bot_choice:
-    #         current_round -= 1 #return this 
-    #         print("Tie. Replaying the round")
-
-    #     else:
-    #         self.bot.points_earned += 1
-    #         print(f"The AI won the round and has {self.bot.points_earned} points total.")
