@@ -14,5 +14,5 @@ class HumanPlayer(Player):
         4: {self.choice[3]}
         5: {self.choice[4]}
         ''')))-1]
-        print(f"You chose {selected_choice}")
+        #print(f"You chose {selected_choice}") #put after winner
         return selected_choice

@@ -8,9 +8,9 @@ class AiPlayer(Player):
         self.name = "Player 2"
 
     def choose_gesture(self):
-        bot_choice = random.choice(self.choice)
-        print(f"AI chose {bot_choice}")
-        return bot_choice
+        bot_selects = random.choice(self.choice)
+        print(f"AI chose {bot_selects}")
+        return bot_selects
 
         # self.chosen_option = random.choice(self.choice)
         # return self.chosen_option
