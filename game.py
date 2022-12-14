@@ -20,16 +20,16 @@ class Game:
     def choose_rounds(self):
         options = [3, 5, 7, 9] 
        
-        selected_option = options[(int(input('''Choose the amount of rounds: 
-        1: 3 rounds
-        2: 5 round
-        3: 7 rounds
-        4: 9 rounds
-        '''))) - 1]
-    
-        if options == 0 or 1 or 2 or 3:
+        try:
+            selected_option = options[(int(input('''Choose the amount of rounds: 
+            1: 3 rounds
+            2: 5 round
+            3: 7 rounds
+            4: 9 rounds
+            '''))) - 1]
             return selected_option
-        else:
+        except:
+            print("Must be an option 1-4")
             self.choose_rounds()
 
     def choose_opponent(self):
@@ -112,16 +112,18 @@ Round {current_round}:
 
     def display_winner(self, number_of_rounds, current_round):
         thatvar = False
+        # print(number_of_rounds / 2)
         if self.user_1.points_earned >= (number_of_rounds / 2):
             print("\n" + f"{self.user_1.name} WINS")
             self.game_over()
             thatvar = True
         
         elif self.user_2.points_earned >= (number_of_rounds / 2):
+            
             print(f"{self.user_2.name} wins!")
             self.game_over()
             thatvar = True
-           
+        # print(number_of_rounds / 2)
         if thatvar == True:
             current_round = number_of_rounds
             return current_round
