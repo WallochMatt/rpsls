@@ -1,5 +1,5 @@
 from players import Player
-import random
+import secrets
 
 class AiPlayer(Player):
     def __init__(self):
@@ -7,5 +7,5 @@ class AiPlayer(Player):
         self.name = "Player 2"
 
     def choose_gesture(self):
-        bot_selects = random.choice(self.choice)
+        bot_selects = secrets.SystemRandom().choice(self.choice)
         return bot_selects
